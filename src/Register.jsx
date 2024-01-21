@@ -1,6 +1,11 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 
 export default function Register() {
+
+let base_url=""
+
+let [error,setError]=useState("")
 
 let [user,setUser] = useState(
   {
@@ -20,16 +25,30 @@ function getUserData(e){
 }
 
 
-function submitRegisterform(e){
+async function submitRegisterform(e){
   e.preventDefault();
-  console.log("submit");
-  console.log(user);
+ let {data}= await axios.post({base_url}+"/signup",user)
+//  let {data}= await axios.post("https://route-egypt-api.herokuapp.com/signup",user)
+
+  if(data.message === "success"){
+  // navigate to login page
+  }else{
+    setError(data.message)
+  }
+
 }
 
   return (
   <>
   <div className="w-75 mx-auto">
   <h2>Register Now</h2>
+{
+error.length > 0 ? 
+ <div className='alert alert-danger' >{error}</div>
+ : " "
+}
+
+
   <form onSubmit={submitRegisterform}>
 
     <label  htmlFor='first_name' >First Name :</label>
