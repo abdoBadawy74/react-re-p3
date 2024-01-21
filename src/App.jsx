@@ -19,7 +19,8 @@ export default function App() {
     <div>
       <Navbar></Navbar>
 
-        <Routes>
+<div className="container-fluid">
+<Routes>
             <Route path='' element={<Home></Home>}></Route>
             <Route path='home' element={<Home></Home>}></Route>
             <Route path='movies' element={<Movies></Movies>}></Route>
@@ -31,6 +32,7 @@ export default function App() {
             <Route path='register' element={<Register></Register>}></Route>
             <Route path='*' element={<Notfound></Notfound>}></Route>
         </Routes>
+</div>
 
       <Footer></Footer>
     </div>
